@@ -19,14 +19,11 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="Tools" />
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-        </menu>
-    </item>
+    <group android:id="@+id/addnew">
+        <item
+            android:id="@+id/newtrip"
+            android:title="Neue Reise"
+            android:icon="@drawable/ic_add" />
+    </group>
 
 </menu>
