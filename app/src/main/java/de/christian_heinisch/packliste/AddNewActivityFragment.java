@@ -23,6 +23,8 @@ public class AddNewActivityFragment extends Fragment {
     private TravelDataSource dataSource;
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,6 +33,13 @@ public class AddNewActivityFragment extends Fragment {
         Log.d(LOG_TAG, "Inhalt der Testmemo: " + testMemo.toString());
 
         dataSource = new TravelDataSource(getActivity());
+
+        Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
+        dataSource.open();
+
+        Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
+        dataSource.close();
+
 
 
         return inflater.inflate(R.layout.fragment_add_new, container, false);
