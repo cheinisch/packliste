@@ -1,5 +1,6 @@
 package de.christian_heinisch.packliste;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -85,20 +86,13 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
 
         } else if (id == R.id.nav_newtrip){
-            
-
+            Intent intent = new Intent(this, AddNewActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_aboutapp){
 
-            AboutFragment aboutFragment = new AboutFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(
-                    R.id.content_main,
-                    aboutFragment,
-                    aboutFragment.getTag()
-            )
-                    .addToBackStack(null)
-                    .commit();
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
 
         }
 
