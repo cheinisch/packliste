@@ -15,7 +15,9 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:text="Ort"
@@ -40,7 +42,7 @@
             android:textAppearance="@android:style/TextAppearance.Material.Title" />
 
         <TextView
-            android:text="Anreise"
+            android:text="Anreise (T.M.J)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView4" />
@@ -53,7 +55,7 @@
             android:id="@+id/editText4" />
 
         <TextView
-            android:text="Rückkehr"
+            android:text="Rückkehr (T.M.J)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView5" />
@@ -64,12 +66,6 @@
             android:inputType="date"
             android:ems="10"
             android:id="@+id/editText5" />
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView6" />
 
     </LinearLayout>
 </RelativeLayout>
