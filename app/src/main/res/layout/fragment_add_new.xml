@@ -30,9 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
             android:ems="10"
-            android:id="@+id/editText" />
+            android:id="@+id/editTextCity" />
 
         <TextView
             android:text="Reisezeit"
@@ -66,6 +65,12 @@
             android:inputType="date"
             android:ems="10"
             android:id="@+id/editText5" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/addCityButton" />
 
     </LinearLayout>
 </RelativeLayout>

@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import de.christian_heinisch.packliste.database.Travel;
 import de.christian_heinisch.packliste.database.TravelDataSource;
@@ -22,6 +25,10 @@ public class AddNewActivityFragment extends Fragment {
 
     private TravelDataSource dataSource;
 
+    View rootview;
+
+    EditText textCity;
+    Button maddCityButton;
 
 
 
@@ -42,6 +49,36 @@ public class AddNewActivityFragment extends Fragment {
 
 
 
-        return inflater.inflate(R.layout.fragment_add_new, container, false);
+        rootview = inflater.inflate(R.layout.fragment_add_new, container, false);
+
+        maddCityButton = (Button)rootview.findViewById(R.id.addCityButton);
+
+        maddCityButton.setOnClickListener(
+                new View.OnClickListener()
+                {
+                    public void onClick(View view)
+                    {
+                        addCity();
+                    }
+                });
+
+        return rootview;
     }
+
+    public void addCity(){
+
+        textCity = (EditText) rootview.findViewById(R.id.editTextCity);
+
+        dataSource.open();
+
+        Travel city = dataSource.createTravel(textCity.getText().toString(), 2, 5);
+        Log.d(LOG_TAG, "Es wurde der folgende Eintrag in die Datenbank geschrieben:");
+        Log.d(LOG_TAG, "ID: " + city.getId() + ", Inhalt: " + city.toString());
+
+        Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
+        dataSource.close();
+    }
+
+
+
 }

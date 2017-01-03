@@ -48,9 +48,9 @@ public class CityActivity extends AppCompatActivity {
 
 
 
-        Travel city = dataSource.createTravel("London", 2, 5);
+        /*Travel city = dataSource.createTravel("London", 2, 5);
         Log.d(LOG_TAG, "Es wurde der folgende Eintrag in die Datenbank geschrieben:");
-        Log.d(LOG_TAG, "ID: " + city.getId() + ", Inhalt: " + city.toString());
+        Log.d(LOG_TAG, "ID: " + city.getId() + ", Inhalt: " + city.toString());*/
 
         Log.d(LOG_TAG, "Folgende Einträge sind in der Datenbank vorhanden:");
         showAllListEntries();
