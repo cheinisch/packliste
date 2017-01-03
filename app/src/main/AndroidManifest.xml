@@ -36,6 +36,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.christian_heinisch.packliste.MainActivity" />
         </activity>
+        <activity
+            android:name=".CityActivity"
+            android:label="@string/title_activity_city"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.christian_heinisch.packliste.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -11,4 +11,5 @@
     <string name="title_activity_about">Über diese APP</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_add_new">Neues Reiseziel</string>
+    <string name="title_activity_city">Alle Reiseziele</string>
 </resources>

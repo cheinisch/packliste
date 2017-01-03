@@ -1,6 +1,5 @@
 package de.christian_heinisch.packliste.database;
 
-import static android.R.attr.id;
 
 /**
  * Created by chris on 02.01.2017.
@@ -53,6 +52,14 @@ public class Travel {
     public void setId(long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        String output = city;
+
+        return output;
+    }
+
 
 
 }
