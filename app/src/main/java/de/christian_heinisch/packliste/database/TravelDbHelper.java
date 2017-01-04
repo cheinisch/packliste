@@ -15,7 +15,7 @@ public class TravelDbHelper extends SQLiteOpenHelper{
 
 
     public static final String DB_NAME = "packing_list.db";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 2;
 
     public static final String TABLE_CITY_LIST = "city_list";
     public static final String TABLE_STUFF_LIST = "stuff_list";
@@ -24,9 +24,12 @@ public class TravelDbHelper extends SQLiteOpenHelper{
     public static final String COLUMN_CITY = "city";
     public static final String COLUMN_STARTDATE = "startdate";
     public static final String COLUMN_ENDDATE = "enddate";
+
     public static final String COLUMN_STUFF = "stuff";
     public static final String COLUMN_STUFF_BUY = "buy";
     public static final String COLUMN_STUFF_CHECKED = "checked";
+    public static final String COLUMN_STUFF_QUANTITY = "quantitiy";
+    public static final String COLUMN_CITY_ID = "cityid";
 
     public static final String SQL_CREATE_CITY =
             "CREATE TABLE " + TABLE_CITY_LIST +
@@ -40,8 +43,10 @@ public class TravelDbHelper extends SQLiteOpenHelper{
             "CREATE TABLE " + TABLE_STUFF_LIST +
                     "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_STUFF + " TEXT NOT NULL, " +
+                    COLUMN_STUFF_QUANTITY + " INT NOT NULL, " +
                     COLUMN_STUFF_BUY + " TEXT NOT NULL, " +
-                    COLUMN_STUFF_CHECKED + " TEXT NOT NULL);";
+                    COLUMN_STUFF_CHECKED + " TEXT NOT NULL, " +
+                    COLUMN_CITY_ID + " INT NOT NULL);";
 
 
     public TravelDbHelper(Context context) {

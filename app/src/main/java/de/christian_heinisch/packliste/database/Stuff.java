@@ -10,13 +10,17 @@ public class Stuff {
     private boolean checked;
     private boolean buy;
     private long id;
+    private int quantitiy;
+    private int cityid;
 
-    public Stuff(String stuff, boolean checked, boolean buy, long id){
+    public Stuff(String stuff, boolean checked, boolean buy, int quantitiy, int cityid, long id){
 
         this.stuff= stuff;
         this.checked = checked;
         this.buy = buy;
         this.id = id;
+        this.quantitiy = quantitiy;
+        this.cityid = cityid;
 
     }
 
@@ -52,5 +56,19 @@ public class Stuff {
         this.id = id;
     }
 
+    public void setQuantitiy(int quantitiy) {
+        this.quantitiy = quantitiy;
+    }
 
+    public int getQuantitiy(){
+        return quantitiy;
+    }
+
+    public int getCityid() {
+        return cityid;
+    }
+
+    public void setCityid(int cityid) {
+        this.cityid = cityid;
+    }
 }

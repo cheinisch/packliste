@@ -99,4 +99,54 @@ public class TravelDataSource {
 
         return travelList;
     }
+
+    public String getTravelCity(Long id) {
+
+        String cityName = "";
+        Cursor cursor = database.query(TravelDbHelper.TABLE_CITY_LIST, columns,
+                "_id = " + id, null, null, null, null);
+
+        cursor.moveToFirst();
+
+        if (cursor.moveToFirst()) {
+            cityName= cursor.getString(cursor.getColumnIndex("city"));
+        }
+
+        cursor.close();
+
+        return cityName;
+    }
+    public String getStartDate(Long id) {
+
+        String cityName = "";
+        Cursor cursor = database.query(TravelDbHelper.TABLE_CITY_LIST, columns,
+                "_id = " + id, null, null, null, null);
+
+        cursor.moveToFirst();
+
+        if (cursor.moveToFirst()) {
+            cityName= cursor.getString(cursor.getColumnIndex("startdate"));
+        }
+
+        cursor.close();
+
+        return cityName;
+    }
+
+    public String getEndDate(Long id) {
+
+        String cityName = "";
+        Cursor cursor = database.query(TravelDbHelper.TABLE_CITY_LIST, columns,
+                "_id = " + id, null, null, null, null);
+
+        cursor.moveToFirst();
+
+        if (cursor.moveToFirst()) {
+            cityName= cursor.getString(cursor.getColumnIndex("enddate"));
+        }
+
+        cursor.close();
+
+        return cityName;
+    }
 }

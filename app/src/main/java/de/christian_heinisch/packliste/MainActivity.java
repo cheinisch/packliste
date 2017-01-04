@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        stuffListFragment();
     }
 
     @Override
@@ -86,11 +88,11 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, CityActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_newtrip){
+        } /*else if (id == R.id.nav_newtrip){
             Intent intent = new Intent(this, AddNewActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_aboutapp){
+        } */else if (id == R.id.nav_aboutapp){
 
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
@@ -100,5 +102,17 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public void stuffListFragment(){
+        StuffFragment stuffFragment = new StuffFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(
+                R.id.content_main,
+                stuffFragment,
+                stuffFragment.getTag()
+        )
+                .commit();
     }
 }
