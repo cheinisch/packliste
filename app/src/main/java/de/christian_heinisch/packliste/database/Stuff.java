@@ -7,13 +7,13 @@ package de.christian_heinisch.packliste.database;
 public class Stuff {
 
     private String stuff;
-    private boolean checked;
-    private boolean buy;
+    private String checked;
+    private String buy;
     private long id;
     private int quantitiy;
     private int cityid;
 
-    public Stuff(String stuff, boolean checked, boolean buy, int quantitiy, int cityid, long id){
+    public Stuff(String stuff, String checked, String buy, int quantitiy, int cityid, long id){
 
         this.stuff= stuff;
         this.checked = checked;
@@ -32,19 +32,19 @@ public class Stuff {
         this.stuff = stuff;
     }
 
-    public boolean isChecked() {
+    public String isChecked() {
         return checked;
     }
 
-    public void setChecked(boolean checked) {
+    public void setChecked(String checked) {
         this.checked = checked;
     }
 
-    public boolean isBuy() {
+    public String isBuy() {
         return buy;
     }
 
-    public void setBuy(boolean buy) {
+    public void setBuy(String buy) {
         this.buy = buy;
     }
 
@@ -70,5 +70,12 @@ public class Stuff {
 
     public void setCityid(int cityid) {
         this.cityid = cityid;
+    }
+
+    @Override
+    public String toString() {
+        String output = stuff + " x " + quantitiy;
+
+        return output;
     }
 }
