@@ -75,7 +75,7 @@ public class CityActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_multiple_choice,
                 shoppingMemoList);
 
-        ListView shoppingMemosListView = (ListView) findViewById(R.id.listview_citys);
+        ListView shoppingMemosListView = (ListView) this.findViewById(R.id.listview_citys);
         shoppingMemosListView.setAdapter(shoppingMemoArrayAdapter);
     }
 
@@ -84,7 +84,7 @@ public class CityActivity extends AppCompatActivity {
         ArrayList<Travel> arrayOfCities = null;
         arrayOfCities = getContent();
         CityAdapter adapter = new CityAdapter(this, arrayOfCities);
-        ListView listView = (ListView) findViewById(R.id.listview_citys);
+        ListView listView = (ListView) this.findViewById(R.id.listview_citys);
         listView.setAdapter(adapter);
 
         //TODO: handle title, description, url, fulltext of listitem to openIten(...)
@@ -102,16 +102,13 @@ public class CityActivity extends AppCompatActivity {
         ArrayList<Travel> listitems = new ArrayList<Travel>();
 
         int length = dataSource.getLength();
-
+        System.out.println("Arraylänge: " + length);
         for (int i = 1; i < length+1; i++) {
             long x = i;
-
+            System.out.println("LONG: " + Long.parseLong(dataSource.getStartDate(x)));
             String city = dataSource.getTravelCity(x);
-            //int startdate = Integer.parseInt(dataSource.getStartDate(x));
-           // int enddate = Integer.parseInt(dataSource.getEndDate(x));
-            int startdate = 1;
-            int enddate = 2;
-
+            long startdate = Long.parseLong(dataSource.getStartDate(x));
+            long enddate = Long.parseLong(dataSource.getEndDate(x));
             listitems.add(new Travel(city, startdate, enddate, x));
         }
         return listitems;

@@ -8,7 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import de.christian_heinisch.packliste.database.Travel;
 import de.christian_heinisch.packliste.database.TravelDataSource;
@@ -28,6 +31,8 @@ public class AddNewActivityFragment extends Fragment {
     View rootview;
 
     EditText textCity;
+    EditText textStart;
+    EditText textEnde;
     Button maddCityButton;
 
 
@@ -40,6 +45,8 @@ public class AddNewActivityFragment extends Fragment {
         Log.d(LOG_TAG, "Inhalt der Testmemo: " + testMemo.toString());
 
         dataSource = new TravelDataSource(getActivity());
+
+
 
         Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
         dataSource.open();
@@ -68,15 +75,42 @@ public class AddNewActivityFragment extends Fragment {
     public void addCity(){
 
         textCity = (EditText) rootview.findViewById(R.id.editTextCity);
+        textStart = (EditText) rootview.findViewById(R.id.editTextStart);
+        textEnde = (EditText) rootview.findViewById(R.id.editTextEnde);
+
+        long dateStart = 0;
+        long dateEnd = 0;
 
         dataSource.open();
 
-        Travel city = dataSource.createTravel(textCity.getText().toString(), 2, 5);
+        System.out.println("Datumseingabe:" + textStart.getText().toString());
+
+        try {
+            dateStart = convertTime(textStart.getText().toString());
+            dateEnd = convertTime(textEnde.getText().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Travel city = dataSource.createTravel(textCity.getText().toString(), dateStart, dateEnd);
         Log.d(LOG_TAG, "Es wurde der folgende Eintrag in die Datenbank geschrieben:");
         Log.d(LOG_TAG, "ID: " + city.getId() + ", Inhalt: " + city.toString());
 
         Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
         dataSource.close();
+    }
+
+    public long convertTime(String newdate) throws ParseException {
+
+
+        System.out.println("HALLO------------------------------------------------------------------------------------------------------: " + newdate);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        Date date = (Date)formatter.parse(newdate);
+        System.out.println("Today is " +date.getTime() + " altes Datum: " + newdate);
+
+        long returnDate = date.getTime();
+
+        return returnDate;
     }
 
 

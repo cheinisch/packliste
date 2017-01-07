@@ -8,11 +8,11 @@ package de.christian_heinisch.packliste.database;
 public class Travel {
 
     public String city;
-    public int startdate;
-    public int enddate;
+    public long startdate;
+    public long enddate;
     private long id;
 
-    public Travel(String city, int startdate, int enddate, long id){
+    public Travel(String city, long startdate, long enddate, long id){
 
         this.city = city;
         this.startdate = startdate;
@@ -29,7 +29,7 @@ public class Travel {
         this.city = city;
     }
 
-    public int getStartdate() {
+    public long getStartdate() {
         return startdate;
     }
 
@@ -37,7 +37,7 @@ public class Travel {
         this.startdate = startdate;
     }
 
-    public int getEnddate() {
+    public long getEnddate() {
         return enddate;
     }
 

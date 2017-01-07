@@ -44,7 +44,7 @@ public class TravelDataSource {
         Log.d(LOG_TAG, "Datenbank mit Hilfe des DbHelpers geschlossen.");
     }
 
-    public Travel createTravel(String city, int startdate, int enddate) {
+    public Travel createTravel(String city, long startdate, long enddate) {
         ContentValues values = new ContentValues();
         values.put(TravelDbHelper.COLUMN_CITY, city);
         values.put(TravelDbHelper.COLUMN_STARTDATE, startdate);

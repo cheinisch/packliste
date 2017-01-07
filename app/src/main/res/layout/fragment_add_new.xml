@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:inputType="date"
             android:ems="10"
-            android:id="@+id/editText4" />
+            android:id="@+id/editTextStart" />
 
         <TextView
             android:text="Rückkehr (T.M.J)"
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:inputType="date"
             android:ems="10"
-            android:id="@+id/editText5" />
+            android:id="@+id/editTextEnde" />
 
         <Button
             android:text="Button"
