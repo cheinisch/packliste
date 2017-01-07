@@ -103,12 +103,14 @@ public class CityActivity extends AppCompatActivity {
 
         int length = dataSource.getLength();
 
-        for (int i = 0; i < length; i++) {
+        for (int i = 1; i < length+1; i++) {
             long x = i;
 
             String city = dataSource.getTravelCity(x);
-            int startdate = Integer.parseInt(dataSource.getStartDate(x));
-            int enddate = Integer.parseInt(dataSource.getEndDate(x));
+            //int startdate = Integer.parseInt(dataSource.getStartDate(x));
+           // int enddate = Integer.parseInt(dataSource.getEndDate(x));
+            int startdate = 1;
+            int enddate = 2;
 
             listitems.add(new Travel(city, startdate, enddate, x));
         }

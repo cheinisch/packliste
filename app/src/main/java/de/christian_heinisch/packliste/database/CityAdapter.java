@@ -30,6 +30,8 @@ public class CityAdapter extends ArrayAdapter<Travel> {
 
         }
 
+        System.out.println("Testeintrag: " + city.city);
+/*
         final TextView tvCity = (TextView) convertView.findViewById(R.id.textViewCity);
         TextView tvEnddate = (TextView) convertView.findViewById(R.id.textViewEndDate);
         TextView tvStartdate = (TextView) convertView.findViewById(R.id.textViewStartDate);
@@ -37,7 +39,7 @@ public class CityAdapter extends ArrayAdapter<Travel> {
         tvCity.setText(city.city);
         tvEnddate.setText(city.startdate);
         tvStartdate.setText(city.enddate);
-
+*/
         return convertView;
 
     }
