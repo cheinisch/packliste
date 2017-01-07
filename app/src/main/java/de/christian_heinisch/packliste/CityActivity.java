@@ -9,11 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import de.christian_heinisch.packliste.database.CityAdapter;
 import de.christian_heinisch.packliste.database.Travel;
 import de.christian_heinisch.packliste.database.TravelDataSource;
 
@@ -56,7 +59,8 @@ public class CityActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "ID: " + city.getId() + ", Inhalt: " + city.toString());*/
 
         Log.d(LOG_TAG, "Folgende Einträge sind in der Datenbank vorhanden:");
-        showAllListEntries();
+        //showAllListEntries();
+        showAllCities();
 
         Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
         dataSource.close();
@@ -73,6 +77,42 @@ public class CityActivity extends AppCompatActivity {
 
         ListView shoppingMemosListView = (ListView) findViewById(R.id.listview_citys);
         shoppingMemosListView.setAdapter(shoppingMemoArrayAdapter);
+    }
+
+    public void showAllCities() {
+
+        ArrayList<Travel> arrayOfCities = null;
+        arrayOfCities = getContent();
+        CityAdapter adapter = new CityAdapter(this, arrayOfCities);
+        ListView listView = (ListView) findViewById(R.id.listview_citys);
+        listView.setAdapter(adapter);
+
+        //TODO: handle title, description, url, fulltext of listitem to openIten(...)
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Travel listitem = (Travel) parent.getAdapter().getItem(position);
+                //openItem(view, listitem);
+            }
+        });
+
+    }
+
+    public ArrayList<Travel> getContent(){
+        ArrayList<Travel> listitems = new ArrayList<Travel>();
+
+        int length = dataSource.getLength();
+
+        for (int i = 0; i < length; i++) {
+            long x = i;
+
+            String city = dataSource.getTravelCity(x);
+            int startdate = Integer.parseInt(dataSource.getStartDate(x));
+            int enddate = Integer.parseInt(dataSource.getEndDate(x));
+
+            listitems.add(new Travel(city, startdate, enddate, x));
+        }
+        return listitems;
     }
 
 

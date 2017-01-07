@@ -7,9 +7,9 @@ package de.christian_heinisch.packliste.database;
 
 public class Travel {
 
-    private String city;
-    private int startdate;
-    private int enddate;
+    public String city;
+    public int startdate;
+    public int enddate;
     private long id;
 
     public Travel(String city, int startdate, int enddate, long id){

@@ -100,6 +100,25 @@ public class TravelDataSource {
         return travelList;
     }
 
+    public int getLength(){
+
+        Cursor cursor = database.query(TravelDbHelper.TABLE_CITY_LIST,
+                columns, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        int x = 0;
+
+        while (!cursor.isAfterLast()) {
+            x = x + 1;
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+
+        return x;
+
+    }
+
     public String getTravelCity(Long id) {
 
         String cityName = "";
