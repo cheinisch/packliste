@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import de.christian_heinisch.packliste.database.Stuff;
 import de.christian_heinisch.packliste.database.StuffDataSource;
@@ -67,8 +70,8 @@ public class StuffFragment extends Fragment {
         Log.d(LOG_TAG, "Folgende Einträge sind in der Datenbank vorhanden:");
 
         String City = dataSource.getTravelCity(id);
-        String startDate = dataSource.getStartDate(id);
-        String endDate = dataSource.getEndDate(id);
+        Long startDate = Long.parseLong(dataSource.getStartDate(id));
+        Long endDate = Long.parseLong(dataSource.getEndDate(id));
 
         Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
         dataSource.close();
@@ -77,7 +80,7 @@ public class StuffFragment extends Fragment {
         cityName.setText(City);
 
         TextView travelDate = (TextView) rootview.findViewById(R.id.textViewTravelDate);
-        travelDate.setText(startDate + " - " + endDate);
+        travelDate.setText(getDate(startDate) + " - " + getDate(endDate));
 
     }
 
@@ -222,5 +225,12 @@ public class StuffFragment extends Fragment {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount()))+100;
         System.out.println("Listenlange: " +params.height);
         listView.setLayoutParams(params);
+    }
+
+    private String getDate(long time) {
+        Calendar cal = Calendar.getInstance(Locale.GERMAN);
+        cal.setTimeInMillis(time);
+        String date = DateFormat.format("dd.MM.yyyy", cal).toString();
+        return date;
     }
 }
