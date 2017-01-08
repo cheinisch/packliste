@@ -103,7 +103,7 @@ public class AddNewActivityFragment extends Fragment {
     public long convertTime(String newdate) throws ParseException {
 
 
-        System.out.println("HALLO------------------------------------------------------------------------------------------------------: " + newdate);
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         Date date = (Date)formatter.parse(newdate);
         System.out.println("Today is " +date.getTime() + " altes Datum: " + newdate);

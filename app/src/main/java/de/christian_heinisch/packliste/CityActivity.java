@@ -1,22 +1,18 @@
 package de.christian_heinisch.packliste;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import de.christian_heinisch.packliste.database.CityAdapter;
 import de.christian_heinisch.packliste.database.Travel;
@@ -46,45 +42,24 @@ public class CityActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Travel testMemo = new Travel("Birnen", 5, 102, 123);
-        Log.d(LOG_TAG, "Inhalt der Testmemo: " + testMemo.toString());
-
         dataSource = new TravelDataSource(this);
 
         Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
         dataSource.open();
-
-
-
-        /*Travel city = dataSource.createTravel("London", 2, 5);
-        Log.d(LOG_TAG, "Es wurde der folgende Eintrag in die Datenbank geschrieben:");
-        Log.d(LOG_TAG, "ID: " + city.getId() + ", Inhalt: " + city.toString());*/
-
-        Log.d(LOG_TAG, "Folgende Einträge sind in der Datenbank vorhanden:");
-        //showAllListEntries();
         showAllCities();
-
         Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
         dataSource.close();
 
     }
 
-    private void showAllListEntries () {
-        List<Travel> shoppingMemoList = dataSource.getAllTravels();
-
-        ArrayAdapter<Travel> shoppingMemoArrayAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_multiple_choice,
-                shoppingMemoList);
-
-        ListView shoppingMemosListView = (ListView) this.findViewById(R.id.listview_citys);
-        shoppingMemosListView.setAdapter(shoppingMemoArrayAdapter);
-    }
 
     public void showAllCities() {
 
         ArrayList<Travel> arrayOfCities = null;
-        arrayOfCities = getContent();
+        dataSource.open();
+        arrayOfCities = dataSource.getContent();
+        dataSource.close();
+
         CityAdapter adapter = new CityAdapter(this, arrayOfCities);
         ListView listView = (ListView) this.findViewById(R.id.listview_citys);
         listView.setAdapter(adapter);
@@ -100,15 +75,17 @@ public class CityActivity extends AppCompatActivity {
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-                                           int pos, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
                 // TODO Auto-generated method stub
+                Travel listitem = (Travel) parent.getAdapter().getItem(position);
 
-                Log.v("long clicked","pos: " + pos);
-
+                Bundle args = new Bundle();
+                args.putLong("id", listitem.getId());
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 // Create and show the dialog.
                 DialogCityFragment newFragment = new DialogCityFragment();
+                newFragment.setArguments(args);
                 newFragment.show(ft, "dialog");
 
 
@@ -118,21 +95,7 @@ public class CityActivity extends AppCompatActivity {
 
     }
 
-    public ArrayList<Travel> getContent(){
-        ArrayList<Travel> listitems = new ArrayList<Travel>();
 
-        int length = dataSource.getLength();
-        System.out.println("Arraylänge: " + length);
-        for (int i = 1; i < length+1; i++) {
-            long x = i;
-            System.out.println("LONG: " + Long.parseLong(dataSource.getStartDate(x)));
-            String city = dataSource.getTravelCity(x);
-            long startdate = Long.parseLong(dataSource.getStartDate(x));
-            long enddate = Long.parseLong(dataSource.getEndDate(x));
-            listitems.add(new Travel(city, startdate, enddate, x));
-        }
-        return listitems;
-    }
 
     private void setCity(long id) {
 

@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -75,8 +73,6 @@ public class StuffFragment extends Fragment {
         Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
         dataSource.open();
 
-        Log.d(LOG_TAG, "Folgende Einträge sind in der Datenbank vorhanden:");
-
         String City = dataSource.getTravelCity(id);
         Long startDate = Long.parseLong(dataSource.getStartDate(id));
         Long endDate = Long.parseLong(dataSource.getEndDate(id));
@@ -98,7 +94,7 @@ public class StuffFragment extends Fragment {
 
         Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
         dataSource_stuff.open();
-        Log.d(LOG_TAG, "Folgende Einträge sind in der Datenbank vorhanden:");
+
         showAllListEntriesBuyed(id);
         showAllListEntriesBuy(id);
 
@@ -121,7 +117,6 @@ public class StuffFragment extends Fragment {
         stuffBuyed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("Hallo");
 /*
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 // Create and show the dialog.
@@ -172,7 +167,7 @@ public class StuffFragment extends Fragment {
                 editTextQuantity.setText("");
                 editTextProduct.setText("");
 
-                Log.d(LOG_TAG, "Die Datenquelle wird geöffnet. HUHU");
+                Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
                 dataSource_stuff.open();
                 dataSource_stuff.createStuff(product, "false","false" , quantity ,cityid);
 
@@ -210,7 +205,7 @@ public class StuffFragment extends Fragment {
                 editTextQuantity.setText("");
                 editTextProduct.setText("");
 
-                Log.d(LOG_TAG, "Die Datenquelle wird geöffnet. HUHU");
+                Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
                 dataSource_stuff.open();
                 dataSource_stuff.createStuff(product, "false","true" , quantity ,cityid);
 
@@ -232,7 +227,6 @@ public class StuffFragment extends Fragment {
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
         int totalHeight = 0;
         int x = listAdapter.getCount();
-        System.out.println("Listenlange: " +listAdapter.getCount());
         View view = null;
         for (int i = 0; i < x; i++) {
             view = listAdapter.getView(i, view, listView);
@@ -244,7 +238,6 @@ public class StuffFragment extends Fragment {
         }
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount()))+100;
-        System.out.println("Listenlange: " +params.height);
         listView.setLayoutParams(params);
     }
 
@@ -264,6 +257,15 @@ public class StuffFragment extends Fragment {
         String idString = settings.getString("id", "1");
 
         id = Long.parseLong(idString);
+        dataSource = new TravelDataSource(getContext());
+        dataSource.open();
+        String city = dataSource.getTravelCity(id);
+        if (city.equalsIgnoreCase(""))
+        {
+            id = dataSource.getFirstTravel();
+        }
+
+        dataSource.close();
 
         return id;
     }

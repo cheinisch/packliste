@@ -29,9 +29,7 @@ public class CityAdapter extends ArrayAdapter<Travel> {
     public View getView(int position, View convertView, ViewGroup parent){
         Travel city = getItem(position);
         if(convertView == null){
-            //convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_citylist, parent, false);
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_citylist, parent, false);
-
         }
 
         TextView tvCity = (TextView) convertView.findViewById(R.id.textViewCityList);
@@ -41,6 +39,8 @@ public class CityAdapter extends ArrayAdapter<Travel> {
         tvCity.setText(city.getCity().toString());
         tvEnddate.setText(getDate(city.getEnddate()));
         tvStartdate.setText(getDate(city.getStartdate()));
+
+        System.out.println("Startdatum: "+ city.getStartdate());
 
         return convertView;
 
@@ -57,6 +57,7 @@ public class CityAdapter extends ArrayAdapter<Travel> {
     }
 
     private String getDate(long time) {
+        System.out.println("time:" + time);
         Calendar cal = Calendar.getInstance(Locale.GERMAN);
         cal.setTimeInMillis(time);
         String date = DateFormat.format("dd.MM.yyyy", cal).toString();

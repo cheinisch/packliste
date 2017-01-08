@@ -13,9 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -137,7 +134,12 @@ public class MainActivity extends AppCompatActivity
         dataSource = new TravelDataSource(this);
         dataSource.open();
         String city = dataSource.getTravelCity(id);
-
+        System.out.println("STADT: + " + city);
+        if (city.equalsIgnoreCase(""))
+        {
+            id = dataSource.getFirstTravel();
+            city = dataSource.getTravelCity(id);
+        }
 
         long time = Long.parseLong(dataSource.getStartDate(id));
         dataSource.close();

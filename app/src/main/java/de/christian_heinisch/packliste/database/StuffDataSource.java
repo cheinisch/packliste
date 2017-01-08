@@ -67,6 +67,14 @@ public class StuffDataSource {
         return stuff;
     }
 
+    public void deleteStuffCity(long id) {
+        database.delete(TravelDbHelper.TABLE_STUFF_LIST,
+                TravelDbHelper.COLUMN_CITY_ID + "=" + id,
+                null);
+
+        Log.d(LOG_TAG, "Eintrag gelöscht! ID: " + id);
+    }
+
     public Stuff updateStuff(long id, String stuffname, String checked, String buy, int quantitiy, int cityid) {
 
         ContentValues values = new ContentValues();

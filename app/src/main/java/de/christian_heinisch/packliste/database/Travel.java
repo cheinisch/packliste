@@ -33,7 +33,7 @@ public class Travel {
         return startdate;
     }
 
-    public void setStartdate(int startdate) {
+    public void setStartdate(long startdate) {
         this.startdate = startdate;
     }
 
@@ -41,7 +41,7 @@ public class Travel {
         return enddate;
     }
 
-    public void setEnddate(int enddate) {
+    public void setEnddate(long enddate) {
         this.enddate = enddate;
     }
 
