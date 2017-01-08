@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textViewCityList"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorHeadline"
         android:paddingTop="10dp" />
 
     <LinearLayout
