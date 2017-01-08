@@ -67,6 +67,32 @@ public class StuffDataSource {
         return stuff;
     }
 
+    public Stuff updateStuff(long id, String stuffname, String checked, String buy, int quantitiy, int cityid) {
+
+        ContentValues values = new ContentValues();
+        values.put(TravelDbHelper.COLUMN_STUFF, stuffname);
+        values.put(TravelDbHelper.COLUMN_STUFF_QUANTITY, quantitiy);
+        values.put(TravelDbHelper.COLUMN_STUFF_CHECKED, checked);
+        values.put(TravelDbHelper.COLUMN_CITY_ID, cityid);
+        values.put(TravelDbHelper.COLUMN_STUFF_BUY, buy);
+
+        database.update(TravelDbHelper.TABLE_STUFF_LIST,
+                values,
+                TravelDbHelper.COLUMN_ID + "=" + id,
+                null);
+
+        Cursor cursor = database.query(TravelDbHelper.TABLE_STUFF_LIST,
+                columns, TravelDbHelper.COLUMN_ID + "=" + id,
+                null, null, null, null);
+
+        cursor.moveToFirst();
+        Stuff stuff = cursorToStuff(cursor);
+        cursor.close();
+
+        return stuff;
+    }
+
+
     private Stuff cursorToStuff(Cursor cursor) {
         int idIndex = cursor.getColumnIndex(TravelDbHelper.COLUMN_ID);
         int idStuff = cursor.getColumnIndex(TravelDbHelper.COLUMN_STUFF);

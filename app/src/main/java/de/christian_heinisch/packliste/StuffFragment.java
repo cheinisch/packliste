@@ -5,13 +5,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +43,7 @@ public class StuffFragment extends Fragment {
     public View rootview;
     private TravelDataSource dataSource;
     private StuffDataSource dataSource_stuff;
+    private ListView stuffBuyed;
 
     public StuffFragment() {
         // Required empty public constructor
@@ -61,6 +64,7 @@ public class StuffFragment extends Fragment {
         getStuffList(id);
         activateAddButton(id);
         activateAddButtonBuy(id);
+
         return rootview;
     }
 
@@ -110,9 +114,22 @@ public class StuffFragment extends Fragment {
                 android.R.layout.simple_list_item_multiple_choice,
                 shoppingMemoList);
 
-        ListView shoppingMemosListView = (ListView) rootview.findViewById(R.id.listviewStuffList);
-        shoppingMemosListView.setAdapter(shoppingMemoArrayAdapter);
-        setListViewHeightBasedOnChildren(shoppingMemosListView);
+        stuffBuyed = (ListView) rootview.findViewById(R.id.listviewStuffList);
+        stuffBuyed.setAdapter(shoppingMemoArrayAdapter);
+        setListViewHeightBasedOnChildren(stuffBuyed);
+
+        stuffBuyed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("Hallo");
+/*
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                // Create and show the dialog.
+                DialogCityFragment newFragment = new DialogCityFragment();
+                newFragment.show(ft, "dialog");*/
+
+            }
+        });
     }
 
     private void showAllListEntriesBuy (long id) {
@@ -168,8 +185,8 @@ public class StuffFragment extends Fragment {
 
     private void activateAddButtonBuy(long id) {
         Button buttonAddProduct = (Button) rootview.findViewById(R.id.button_add_product_buy);
-        final EditText editTextQuantity = (EditText) rootview.findViewById(R.id.editText_quantity);
-        final EditText editTextProduct = (EditText) rootview.findViewById(R.id.editText_product);
+        final EditText editTextQuantity = (EditText) rootview.findViewById(R.id.editText_quantity_buy);
+        final EditText editTextProduct = (EditText) rootview.findViewById(R.id.editText_product_buy);
         final long reloadid = id;
         final int cityid = (int) id;
 

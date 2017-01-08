@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -94,6 +95,24 @@ public class CityActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Travel listitem = (Travel) parent.getAdapter().getItem(position);
                 setCity(listitem.getId());
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int pos, long id) {
+                // TODO Auto-generated method stub
+
+                Log.v("long clicked","pos: " + pos);
+
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                // Create and show the dialog.
+                DialogCityFragment newFragment = new DialogCityFragment();
+                newFragment.show(ft, "dialog");
+
+
+                return true;
             }
         });
 
