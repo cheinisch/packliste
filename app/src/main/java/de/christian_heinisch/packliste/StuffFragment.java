@@ -247,7 +247,7 @@ public class StuffFragment extends Fragment {
         String idString = settings.getString("id", "1");
 
         id = Long.parseLong(idString);
-        
+
         return id;
     }
 }
