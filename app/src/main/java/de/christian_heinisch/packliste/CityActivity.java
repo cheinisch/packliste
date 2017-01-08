@@ -2,6 +2,7 @@ package de.christian_heinisch.packliste;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -92,7 +93,7 @@ public class CityActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Travel listitem = (Travel) parent.getAdapter().getItem(position);
-                //openItem(view, listitem);
+                setCity(listitem.getId());
             }
         });
 
@@ -114,5 +115,23 @@ public class CityActivity extends AppCompatActivity {
         return listitems;
     }
 
+    private void setCity(long id) {
+
+        SharedPreferences settings = this.getSharedPreferences("Packliste", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        String idString = String.valueOf(id);
+
+        // Speichert ID der Datenbank
+        editor.putString("id", idString);
+
+        editor.commit();
+
+
+        // MainActivity neu laden
+        Intent refresh = new Intent(this, MainActivity.class);
+        startActivity(refresh);
+
+    }
 
 }

@@ -1,6 +1,7 @@
 package de.christian_heinisch.packliste;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -27,6 +28,7 @@ import de.christian_heinisch.packliste.database.Stuff;
 import de.christian_heinisch.packliste.database.StuffDataSource;
 import de.christian_heinisch.packliste.database.TravelDataSource;
 
+import static android.content.Context.MODE_PRIVATE;
 import static de.christian_heinisch.packliste.AddNewActivityFragment.LOG_TAG;
 
 
@@ -52,6 +54,8 @@ public class StuffFragment extends Fragment {
         rootview = inflater.inflate(R.layout.fragment_stuff, container, false);
 
         long id = 1;
+
+        id = getID();
 
         getTravelData(id);
         getStuffList(id);
@@ -232,5 +236,18 @@ public class StuffFragment extends Fragment {
         cal.setTimeInMillis(time);
         String date = DateFormat.format("dd.MM.yyyy", cal).toString();
         return date;
+    }
+
+    private long getID(){
+
+        SharedPreferences settings = getContext().getSharedPreferences("Packliste", MODE_PRIVATE);
+
+        long id = 1;
+
+        String idString = settings.getString("id", "1");
+
+        id = Long.parseLong(idString);
+        
+        return id;
     }
 }

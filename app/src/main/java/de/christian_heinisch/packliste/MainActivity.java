@@ -1,10 +1,12 @@
 package de.christian_heinisch.packliste;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,8 +17,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Calendar;
+import java.util.Locale;
+
+import de.christian_heinisch.packliste.database.TravelDataSource;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    NavigationView navigationView;
+    private TravelDataSource dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +42,10 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        getReiseName();
 
         stuffListFragment();
     }
@@ -107,4 +119,51 @@ public class MainActivity extends AppCompatActivity
         )
                 .commit();
     }
+
+    public void getReiseName(){
+
+        SharedPreferences settings = this.getSharedPreferences("Packliste", MODE_PRIVATE);
+
+        long id = 1;
+
+        String idString = settings.getString("id", "1");
+
+        id = Long.parseLong(idString);
+
+        String reisebezeichnung = "Februar - 2017";
+
+        dataSource = new TravelDataSource(this);
+        dataSource.open();
+        String city = dataSource.getTravelCity(id);
+
+
+        long time = Long.parseLong(dataSource.getStartDate(id));
+        dataSource.close();
+        reisebezeichnung = city + " - " + getMonth(time) + " " + getYear(time);
+
+        Menu header=navigationView.getMenu();
+        MenuItem test = header.findItem(R.id.nav_travellist);
+        test.setTitle(reisebezeichnung);
+
+
+    }
+
+    public String getMonth(long time){
+
+        Calendar cal = Calendar.getInstance(Locale.GERMAN);
+        cal.setTimeInMillis(time);
+        String date = DateFormat.format("MMMM", cal).toString();
+        return date;
+
+    }
+
+    public String getYear(long time){
+
+        Calendar cal = Calendar.getInstance(Locale.GERMAN);
+        cal.setTimeInMillis(time);
+        String date = DateFormat.format("yyyy", cal).toString();
+        return date;
+
+    }
+
 }
