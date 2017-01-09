@@ -173,6 +173,8 @@ public class StuffFragment extends Fragment {
 
                 showAllListEntriesBuyed(reloadid);
                 dataSource_stuff.close();
+
+
             }
         });
 

@@ -1,5 +1,7 @@
 package de.christian_heinisch.packliste;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +17,8 @@ import java.util.Date;
 
 import de.christian_heinisch.packliste.database.Travel;
 import de.christian_heinisch.packliste.database.TravelDataSource;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -93,11 +97,24 @@ public class AddNewActivityFragment extends Fragment {
         }
 
         Travel city = dataSource.createTravel(textCity.getText().toString(), dateStart, dateEnd);
-        Log.d(LOG_TAG, "Es wurde der folgende Eintrag in die Datenbank geschrieben:");
-        Log.d(LOG_TAG, "ID: " + city.getId() + ", Inhalt: " + city.toString());
-
         Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
         dataSource.close();
+
+
+        // Setzt die ID als Shared Preference und startet die Main Activity
+        SharedPreferences settings = getContext().getSharedPreferences("Packliste", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        String idString = String.valueOf(city.getId());
+
+        // Speichert ID der Datenbank
+        editor.putString("id", idString);
+
+        editor.commit();
+
+
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        startActivity(intent);
     }
 
     public long convertTime(String newdate) throws ParseException {
