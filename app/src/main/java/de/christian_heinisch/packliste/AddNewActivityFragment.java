@@ -119,8 +119,6 @@ public class AddNewActivityFragment extends Fragment {
 
     public long convertTime(String newdate) throws ParseException {
 
-
-
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         Date date = (Date)formatter.parse(newdate);
 
