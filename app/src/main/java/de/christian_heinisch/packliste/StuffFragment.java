@@ -20,12 +20,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
 import de.christian_heinisch.packliste.database.Stuff;
+import de.christian_heinisch.packliste.database.StuffAdapter;
 import de.christian_heinisch.packliste.database.StuffDataSource;
+import de.christian_heinisch.packliste.database.StuffHaveToBuyAdapter;
 import de.christian_heinisch.packliste.database.TravelDataSource;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -103,6 +106,15 @@ public class StuffFragment extends Fragment {
     }
 
     private void showAllListEntriesBuyed (long id) {
+
+        ArrayList<Stuff> arrayOfStuff = null;
+        arrayOfStuff = dataSource_stuff.getStuffForList(id, "true");
+
+        StuffAdapter adapter = new StuffAdapter(getContext(), arrayOfStuff);
+        ListView listView = (ListView) rootview.findViewById(R.id.listviewStuffList);
+        listView.setAdapter(adapter);
+
+        /*
         List<Stuff> shoppingMemoList = dataSource_stuff.getAllStuffbuyed(id);
 
         ArrayAdapter<Stuff> shoppingMemoArrayAdapter = new ArrayAdapter<>(
@@ -121,10 +133,10 @@ public class StuffFragment extends Fragment {
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 // Create and show the dialog.
                 DialogCityFragment newFragment = new DialogCityFragment();
-                newFragment.show(ft, "dialog");*/
+                newFragment.show(ft, "dialog");
 
             }
-        });
+        });*/
     }
 
     private void showAllListEntriesBuy (long id) {

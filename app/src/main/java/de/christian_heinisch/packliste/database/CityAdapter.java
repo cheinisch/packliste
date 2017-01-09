@@ -40,8 +40,6 @@ public class CityAdapter extends ArrayAdapter<Travel> {
         tvEnddate.setText(getDate(city.getEnddate()));
         tvStartdate.setText(getDate(city.getStartdate()));
 
-        System.out.println("Startdatum: "+ city.getStartdate());
-
         return convertView;
 
     }
@@ -57,7 +55,6 @@ public class CityAdapter extends ArrayAdapter<Travel> {
     }
 
     private String getDate(long time) {
-        System.out.println("time:" + time);
         Calendar cal = Calendar.getInstance(Locale.GERMAN);
         cal.setTimeInMillis(time);
         String date = DateFormat.format("dd.MM.yyyy", cal).toString();

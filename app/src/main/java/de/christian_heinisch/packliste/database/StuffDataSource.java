@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -121,6 +122,31 @@ public class StuffDataSource {
         return stuff;
     }
 
+    public ArrayList<Stuff> getStuffForList(long id, String buy){
+        ArrayList<Stuff> listitems = new ArrayList<Stuff>();
+
+        Cursor cursor = database.query(TravelDbHelper.TABLE_STUFF_LIST,
+                columns, "cityid = " + id + " and buy = ?",new String[]{"false"}, null, null, null);
+
+        String sqlQry = SQLiteQueryBuilder.buildQueryString(false, TravelDbHelper.TABLE_STUFF_LIST,
+                columns, "buy = " + buy,null, null, null, null);
+
+        Log.i(LOG_TAG, sqlQry);
+
+        cursor.moveToFirst();
+        Stuff stuff;
+
+        while (!cursor.isAfterLast()) {
+            stuff = cursorToStuff(cursor);
+            listitems.add(new Stuff(stuff.getStuff(), stuff.isChecked(), stuff.isBuy(), stuff.getQuantitiy(), stuff.getCityid(), stuff.getId()));
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+
+        return listitems;
+    }
+
     public List<Stuff> getAllStuffbuyed(long cityid) {
         List<Stuff> stuffList = new ArrayList<>();
 
@@ -133,7 +159,6 @@ public class StuffDataSource {
         while (!cursor.isAfterLast()) {
             stuff = cursorToStuff(cursor);
             stuffList.add(stuff);
-            Log.d(LOG_TAG, "ID: " + stuff.getId() + ", Inhalt: " + stuff.toString());
             cursor.moveToNext();
         }
 
