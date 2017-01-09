@@ -123,7 +123,6 @@ public class AddNewActivityFragment extends Fragment {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         Date date = (Date)formatter.parse(newdate);
-        System.out.println("Today is " +date.getTime() + " altes Datum: " + newdate);
 
         long returnDate = date.getTime();
 
