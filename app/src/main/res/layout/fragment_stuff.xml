@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/textViewCityname"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
-            android:textColor="@color/colorHeadline" />
+            android:textColor="@color/colorHeadline"
+            android:textSize="30sp" />
 
         <LinearLayout
             android:orientation="horizontal"

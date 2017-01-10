@@ -126,7 +126,7 @@ public class StuffDataSource {
         ArrayList<Stuff> listitems = new ArrayList<Stuff>();
 
         Cursor cursor = database.query(TravelDbHelper.TABLE_STUFF_LIST,
-                columns, "cityid = " + id + " and buy = ?",new String[]{"false"}, null, null, null);
+                columns, "cityid = " + id + " and buy = ?",new String[]{buy}, null, null, null);
 
         String sqlQry = SQLiteQueryBuilder.buildQueryString(false, TravelDbHelper.TABLE_STUFF_LIST,
                 columns, "buy = " + buy,null, null, null, null);

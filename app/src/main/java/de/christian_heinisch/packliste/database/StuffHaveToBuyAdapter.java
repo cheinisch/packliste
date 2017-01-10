@@ -27,7 +27,7 @@ public class StuffHaveToBuyAdapter  extends ArrayAdapter<Stuff> {
     public View getView(int position, View convertView, ViewGroup parent){
         Stuff stuff = getItem(position);
         if(convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_stufflist, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_stufflistbuy, parent, false);
         }
 
         TextView tvStuff = (TextView) convertView.findViewById(R.id.tvStuffListTitle);
@@ -35,7 +35,7 @@ public class StuffHaveToBuyAdapter  extends ArrayAdapter<Stuff> {
         CheckBox cbPacked = (CheckBox) convertView.findViewById(R.id.checkBoxStuffList);
 
         tvStuff.setText(stuff.getStuff().toString());
-        tvQuantity.setText(stuff.getQuantitiy());
+        tvQuantity.setText(String.valueOf(stuff.getQuantitiy()));
         //tvStartdate.setText(getDate(city.getStartdate()));
 
         return convertView;

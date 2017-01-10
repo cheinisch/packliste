@@ -108,48 +108,26 @@ public class StuffFragment extends Fragment {
     private void showAllListEntriesBuyed (long id) {
 
         ArrayList<Stuff> arrayOfStuff = null;
-        arrayOfStuff = dataSource_stuff.getStuffForList(id, "true");
+        arrayOfStuff = dataSource_stuff.getStuffForList(id, "false");
 
         StuffAdapter adapter = new StuffAdapter(getContext(), arrayOfStuff);
         ListView listView = (ListView) rootview.findViewById(R.id.listviewStuffList);
         listView.setAdapter(adapter);
+        /*Fix für die Höhe*/
+        setListViewHeightBasedOnChildren(listView);
 
-        /*
-        List<Stuff> shoppingMemoList = dataSource_stuff.getAllStuffbuyed(id);
-
-        ArrayAdapter<Stuff> shoppingMemoArrayAdapter = new ArrayAdapter<>(
-                getContext(),
-                android.R.layout.simple_list_item_multiple_choice,
-                shoppingMemoList);
-
-        stuffBuyed = (ListView) rootview.findViewById(R.id.listviewStuffList);
-        stuffBuyed.setAdapter(shoppingMemoArrayAdapter);
-        setListViewHeightBasedOnChildren(stuffBuyed);
-
-        stuffBuyed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-/*
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                // Create and show the dialog.
-                DialogCityFragment newFragment = new DialogCityFragment();
-                newFragment.show(ft, "dialog");
-
-            }
-        });*/
     }
 
     private void showAllListEntriesBuy (long id) {
-        List<Stuff> shoppingMemoList = dataSource_stuff.getAllStuffBuy(id);
 
-        ArrayAdapter<Stuff> shoppingMemoArrayAdapter = new ArrayAdapter<>(
-                getContext(),
-                android.R.layout.simple_list_item_multiple_choice,
-                shoppingMemoList);
+        ArrayList<Stuff> arrayOfStuff = null;
+        arrayOfStuff = dataSource_stuff.getStuffForList(id, "true");
 
-        ListView shoppingMemosListView = (ListView) rootview.findViewById(R.id.listviewStuffBuy);
-        shoppingMemosListView.setAdapter(shoppingMemoArrayAdapter);
-        setListViewHeightBasedOnChildren(shoppingMemosListView);
+        StuffHaveToBuyAdapter adapter = new StuffHaveToBuyAdapter(getContext(), arrayOfStuff);
+        ListView listView = (ListView) rootview.findViewById(R.id.listviewStuffBuy);
+        listView.setAdapter(adapter);
+        /*Fix für die Höhe*/
+        setListViewHeightBasedOnChildren(listView);
     }
 
     private void activateAddButton(long id) {
@@ -251,7 +229,7 @@ public class StuffFragment extends Fragment {
             totalHeight += view.getMeasuredHeight();
         }
         ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount()))+100;
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount()));
         listView.setLayoutParams(params);
     }
 
