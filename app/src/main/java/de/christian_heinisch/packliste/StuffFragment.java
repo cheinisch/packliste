@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -22,7 +21,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 import de.christian_heinisch.packliste.database.Stuff;
@@ -44,7 +42,7 @@ public class StuffFragment extends Fragment {
     public View rootview;
     private TravelDataSource dataSource;
     private StuffDataSource dataSource_stuff;
-    private ListView stuffBuyed;
+    long id;
 
     public StuffFragment() {
         // Required empty public constructor
@@ -57,7 +55,7 @@ public class StuffFragment extends Fragment {
         // Inflate the layout for this fragment
         rootview = inflater.inflate(R.layout.fragment_stuff, container, false);
 
-        long id = 1;
+
 
         id = getID();
 
@@ -98,14 +96,14 @@ public class StuffFragment extends Fragment {
         Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
         dataSource_stuff.open();
 
-        showAllListEntriesBuyed(id);
+        showAllStuff(id);
         showAllListEntriesBuy(id);
 
         Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
         dataSource_stuff.close();
     }
 
-    private void showAllListEntriesBuyed (long id) {
+    public void showAllStuff (long id) {
 
         ArrayList<Stuff> arrayOfStuff = null;
         arrayOfStuff = dataSource_stuff.getStuffForList(id, "false");
@@ -115,6 +113,15 @@ public class StuffFragment extends Fragment {
         listView.setAdapter(adapter);
         /*Fix für die Höhe*/
         setListViewHeightBasedOnChildren(listView);
+
+        /*OnClick Listener*/
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("Knobb gedrückt");
+            }
+        });
 
     }
 
@@ -161,7 +168,7 @@ public class StuffFragment extends Fragment {
                 dataSource_stuff.open();
                 dataSource_stuff.createStuff(product, "false","false" , quantity ,cityid);
 
-                showAllListEntriesBuyed(reloadid);
+                showAllStuff(reloadid);
                 dataSource_stuff.close();
 
 

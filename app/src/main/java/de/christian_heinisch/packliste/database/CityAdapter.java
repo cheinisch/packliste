@@ -43,7 +43,7 @@ public class CityAdapter extends ArrayAdapter<Travel> {
         return convertView;
 
     }
-
+/*
     public void openitem(View view){
 
 
@@ -52,7 +52,7 @@ public class CityAdapter extends ArrayAdapter<Travel> {
         // Erstelle einen neuen Intent und weise ihm eine Actvity zu
 
 
-    }
+    }*/
 
     private String getDate(long time) {
         Calendar cal = Calendar.getInstance(Locale.GERMAN);
