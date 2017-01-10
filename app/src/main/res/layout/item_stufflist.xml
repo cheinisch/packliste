@@ -24,5 +24,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/checkBoxStuffList"
         android:layout_weight="1"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:focusable="false" />
 </LinearLayout>

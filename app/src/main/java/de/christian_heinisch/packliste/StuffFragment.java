@@ -43,6 +43,7 @@ public class StuffFragment extends Fragment {
     private TravelDataSource dataSource;
     private StuffDataSource dataSource_stuff;
     long id;
+    private ListView listView;
 
     public StuffFragment() {
         // Required empty public constructor
@@ -54,6 +55,8 @@ public class StuffFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootview = inflater.inflate(R.layout.fragment_stuff, container, false);
+
+        listView = (ListView) rootview.findViewById(R.id.listviewStuffList);
 
 
 
@@ -108,8 +111,8 @@ public class StuffFragment extends Fragment {
         ArrayList<Stuff> arrayOfStuff = null;
         arrayOfStuff = dataSource_stuff.getStuffForList(id, "false");
 
-        StuffAdapter adapter = new StuffAdapter(getContext(), arrayOfStuff);
-        ListView listView = (ListView) rootview.findViewById(R.id.listviewStuffList);
+        StuffAdapter adapter = new StuffAdapter(getActivity(), arrayOfStuff);
+
         listView.setAdapter(adapter);
         /*Fix für die Höhe*/
         setListViewHeightBasedOnChildren(listView);
@@ -117,12 +120,11 @@ public class StuffFragment extends Fragment {
         /*OnClick Listener*/
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 System.out.println("Knobb gedrückt");
             }
         });
-
     }
 
     private void showAllListEntriesBuy (long id) {
@@ -135,6 +137,13 @@ public class StuffFragment extends Fragment {
         listView.setAdapter(adapter);
         /*Fix für die Höhe*/
         setListViewHeightBasedOnChildren(listView);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("Knobb auch gedrückt");
+            }
+        });
     }
 
     private void activateAddButton(long id) {
@@ -208,7 +217,7 @@ public class StuffFragment extends Fragment {
                 dataSource_stuff.open();
                 dataSource_stuff.createStuff(product, "false","true" , quantity ,cityid);
 
-                showAllListEntriesBuy(reloadid);
+              //  showAllListEntriesBuy(reloadid);
                 dataSource_stuff.close();
             }
         });

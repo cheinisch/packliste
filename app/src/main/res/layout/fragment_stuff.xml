@@ -7,8 +7,6 @@
     android:scrollbars="vertical"
     android:nestedScrollingEnabled="true">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,9 +51,8 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/listviewStuffList"
-            android:fadeScrollbars="false"
-            android:scrollbars="none" />
+            android:id="@+id/listviewStuffList" />
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
