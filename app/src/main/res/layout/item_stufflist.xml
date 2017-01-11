@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvStuffListTitle"
         android:layout_weight="4"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <TextView
         android:text="tvStuffListQuantity"
@@ -17,13 +17,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvStuffListQuantity"
         android:layout_weight="1"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
     <CheckBox
         android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:id="@+id/checkBoxStuffList"
         android:layout_weight="1"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
         android:focusable="false" />
 </LinearLayout>

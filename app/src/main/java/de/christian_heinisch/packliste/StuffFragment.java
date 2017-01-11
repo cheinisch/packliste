@@ -100,7 +100,7 @@ public class StuffFragment extends Fragment {
         dataSource_stuff.open();
 
         showAllStuff(id);
-        showAllListEntriesBuy(id);
+        showStuffToBuy(id);
 
         Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
         dataSource_stuff.close();
@@ -127,7 +127,7 @@ public class StuffFragment extends Fragment {
         });
     }
 
-    private void showAllListEntriesBuy (long id) {
+    public void showStuffToBuy (long id) {
 
         ArrayList<Stuff> arrayOfStuff = null;
         arrayOfStuff = dataSource_stuff.getStuffForList(id, "true");
@@ -217,7 +217,7 @@ public class StuffFragment extends Fragment {
                 dataSource_stuff.open();
                 dataSource_stuff.createStuff(product, "false","true" , quantity ,cityid);
 
-              //  showAllListEntriesBuy(reloadid);
+                showStuffToBuy(reloadid);
                 dataSource_stuff.close();
             }
         });
