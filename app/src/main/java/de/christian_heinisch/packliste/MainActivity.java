@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -42,9 +43,8 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getReiseName();
+        Start();
 
-        stuffListFragment();
     }
 
 
@@ -119,6 +119,10 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
+    public void DialogChangeQuantity(){
+        
+    }
+
     public void getReiseName(){
 
         SharedPreferences settings = this.getSharedPreferences("Packliste", MODE_PRIVATE);
@@ -167,6 +171,29 @@ public class MainActivity extends AppCompatActivity
         cal.setTimeInMillis(time);
         String date = DateFormat.format("yyyy", cal).toString();
         return date;
+
+    }
+
+    public void Start(){
+
+        SharedPreferences settings = this.getSharedPreferences("Packliste", MODE_PRIVATE);
+
+        long id = 0;
+
+        String idString = settings.getString("id", "0");
+
+        id = Long.parseLong(idString);
+
+        if (id == 0){
+
+            Intent intent = new Intent(this, CityActivity.class);
+            startActivity(intent);
+
+        }else{
+            getReiseName();
+
+            stuffListFragment();
+        }
 
     }
 

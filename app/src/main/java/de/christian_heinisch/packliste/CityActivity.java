@@ -1,5 +1,6 @@
 package de.christian_heinisch.packliste;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -87,7 +88,6 @@ public class CityActivity extends AppCompatActivity {
                 DialogCityFragment newFragment = new DialogCityFragment();
                 newFragment.setArguments(args);
                 newFragment.show(ft, "dialog");
-
 
                 return true;
             }

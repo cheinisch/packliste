@@ -1,6 +1,7 @@
 package de.christian_heinisch.packliste.database;
 
 import android.content.Context;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import de.christian_heinisch.packliste.DialogChangeStuffQuantity;
 import de.christian_heinisch.packliste.MainActivity;
 import de.christian_heinisch.packliste.R;
 
@@ -53,6 +55,13 @@ public class StuffAdapter  extends ArrayAdapter<Stuff> {
         if(checked.equalsIgnoreCase("true")){
             cbPacked.toggle();
         }
+
+        tvQuantity.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View view) {
+                  ((MainActivity)getContext()).DialogChangeQuantity();
+              }
+
+          });
 
         cbPacked.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
