@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.format.DateFormat;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -119,8 +120,16 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-    public void DialogChangeQuantity(){
-        
+    public void DialogChangeQuantity(long id){
+
+        Bundle args = new Bundle();
+        args.putLong("id", id);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        // Create and show the dialog.
+        DialogChangeStuffQuantity newFragment = new DialogChangeStuffQuantity();
+        newFragment.setArguments(args);
+        newFragment.show(ft, "dialog");
+
     }
 
     public void getReiseName(){

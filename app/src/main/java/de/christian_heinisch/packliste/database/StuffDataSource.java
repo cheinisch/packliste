@@ -101,6 +101,43 @@ public class StuffDataSource {
         return stuff;
     }
 
+    public long getQuantity(long id){
+
+        long quantity = 0;
+
+        Cursor cursor = database.query(TravelDbHelper.TABLE_STUFF_LIST,
+                    columns, TravelDbHelper.COLUMN_ID + "=" + id ,null, null, null, null);
+
+        Stuff stuff;
+
+        if (cursor!= null && cursor.moveToFirst());
+        do {
+            stuff = cursorToStuff(cursor);
+            quantity = stuff.getQuantitiy();
+            System.out.println(quantity);
+        } while (cursor.moveToNext());
+
+        return quantity;
+    }
+
+    public void updateQuantity(long id, int quantity){
+
+        Cursor cursor = database.query(TravelDbHelper.TABLE_STUFF_LIST,
+                columns, TravelDbHelper.COLUMN_ID + "=" + id ,null, null, null, null);
+
+        Stuff stuff;
+
+        if (cursor!= null && cursor.moveToFirst());
+        do {
+            stuff = cursorToStuff(cursor);
+
+            updateStuff(id, stuff.getStuff(), stuff.isChecked(), stuff.isBuy(), quantity, stuff.getCityid() );
+
+        } while (cursor.moveToNext());
+
+
+    }
+
 
     private Stuff cursorToStuff(Cursor cursor) {
         int idIndex = cursor.getColumnIndex(TravelDbHelper.COLUMN_ID);

@@ -58,7 +58,8 @@ public class StuffAdapter  extends ArrayAdapter<Stuff> {
 
         tvQuantity.setOnClickListener(new View.OnClickListener() {
               public void onClick(View view) {
-                  ((MainActivity)getContext()).DialogChangeQuantity();
+                  System.out.println("Test: " +stuff.getId());
+                  ((MainActivity)getContext()).DialogChangeQuantity(stuff.getId());
               }
 
           });
