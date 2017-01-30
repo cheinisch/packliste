@@ -64,6 +64,29 @@ public class StuffAdapter  extends ArrayAdapter<Stuff> {
 
           });
 
+        tvQuantity.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View view) {
+                ((MainActivity)getContext()).DialogDeleteStuff(stuff.getId());
+                return false;
+            }
+
+        });
+
+        tvStuff.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                ((MainActivity)getContext()).DialogChangeText(stuff.getId());
+            }
+
+        });
+
+        tvStuff.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View view) {
+                ((MainActivity)getContext()).DialogDeleteStuff(stuff.getId());
+                return false;
+            }
+
+        });
+
         cbPacked.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 dataSource.open();
@@ -77,6 +100,8 @@ public class StuffAdapter  extends ArrayAdapter<Stuff> {
                 ((MainActivity)getContext()).stuffListFragment();
             }
         });
+
+
 
         return convertView;
 

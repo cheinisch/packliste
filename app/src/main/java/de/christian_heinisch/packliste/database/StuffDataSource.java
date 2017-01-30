@@ -68,6 +68,14 @@ public class StuffDataSource {
         return stuff;
     }
 
+    public void deleteStuff(long id) {
+        database.delete(TravelDbHelper.TABLE_STUFF_LIST,
+                TravelDbHelper.COLUMN_ID + "=" + id,
+                null);
+
+        Log.d(LOG_TAG, "Eintrag gelöscht! ID: " + id);
+    }
+
     public void deleteStuffCity(long id) {
         database.delete(TravelDbHelper.TABLE_STUFF_LIST,
                 TravelDbHelper.COLUMN_CITY_ID + "=" + id,
@@ -106,7 +114,7 @@ public class StuffDataSource {
         long quantity = 0;
 
         Cursor cursor = database.query(TravelDbHelper.TABLE_STUFF_LIST,
-                    columns, TravelDbHelper.COLUMN_ID + "=" + id ,null, null, null, null);
+                columns, TravelDbHelper.COLUMN_ID + "=" + id ,null, null, null, null);
 
         Stuff stuff;
 
@@ -132,6 +140,43 @@ public class StuffDataSource {
             stuff = cursorToStuff(cursor);
 
             updateStuff(id, stuff.getStuff(), stuff.isChecked(), stuff.isBuy(), quantity, stuff.getCityid() );
+
+        } while (cursor.moveToNext());
+
+
+    }
+
+    public String getText(long id){
+
+        String text = "";
+
+        Cursor cursor = database.query(TravelDbHelper.TABLE_STUFF_LIST,
+                columns, TravelDbHelper.COLUMN_ID + "=" + id ,null, null, null, null);
+
+        Stuff stuff;
+
+        if (cursor!= null && cursor.moveToFirst());
+        do {
+            stuff = cursorToStuff(cursor);
+            text = stuff.getStuff();
+
+        } while (cursor.moveToNext());
+
+        return text;
+    }
+
+    public void updateText(long id, String text){
+
+        Cursor cursor = database.query(TravelDbHelper.TABLE_STUFF_LIST,
+                columns, TravelDbHelper.COLUMN_ID + "=" + id ,null, null, null, null);
+
+        Stuff stuff;
+
+        if (cursor!= null && cursor.moveToFirst());
+        do {
+            stuff = cursorToStuff(cursor);
+
+            updateStuff(id, text, stuff.isChecked(), stuff.isBuy(), stuff.getQuantitiy(), stuff.getCityid() );
 
         } while (cursor.moveToNext());
 

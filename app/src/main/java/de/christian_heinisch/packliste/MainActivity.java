@@ -132,6 +132,30 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public void DialogChangeText(long id){
+
+        Bundle args = new Bundle();
+        args.putLong("id", id);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        // Create and show the dialog.
+        DialogChangeStuffText newFragment = new DialogChangeStuffText();
+        newFragment.setArguments(args);
+        newFragment.show(ft, "dialog");
+
+    }
+
+    public void DialogDeleteStuff(long id){
+
+        Bundle args = new Bundle();
+        args.putLong("id", id);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        // Create and show the dialog.
+        DialogDeleteStuff newFragment = new DialogDeleteStuff();
+        newFragment.setArguments(args);
+        newFragment.show(ft, "dialog");
+
+    }
+
     public void getReiseName(){
 
         SharedPreferences settings = this.getSharedPreferences("Packliste", MODE_PRIVATE);

@@ -14,18 +14,10 @@
         android:padding="20dp">
 
         <TextView
-            android:text="Anzahl"
+            android:text="Möchtest du das wirklich löschen?"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView6" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="2"
-            android:ems="10"
-            android:id="@+id/editStuffText" />
-
+            android:id="@+id/textView8" />
     </LinearLayout>
+
 </FrameLayout>
