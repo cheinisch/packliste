@@ -64,7 +64,7 @@ public class DialogCityFragment extends DialogFragment {
 
         return new AlertDialog.Builder(getActivity())
                 .setView(dialoglayout)
-                .setTitle("Reise bearbeiten/löschen")
+                .setTitle(R.string.edit_travel_title)
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

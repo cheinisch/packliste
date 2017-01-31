@@ -66,7 +66,7 @@ public class AboutActivity extends AppCompatActivity {
 
     }
 
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -87,7 +87,7 @@ public class AboutActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     /**
      * A placeholder fragment containing a simple view.
@@ -164,11 +164,11 @@ public class AboutActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Informationen";
+                    return getResources().getString(R.string.about_tab1);
                 case 1:
-                    return "Quellen";
+                    return getResources().getString(R.string.about_tab2);
                 case 2:
-                    return "Releasenotes";
+                    return getResources().getString(R.string.about_tab3);
             }
             return null;
         }

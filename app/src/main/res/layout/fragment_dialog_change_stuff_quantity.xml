@@ -14,7 +14,7 @@
         android:padding="20dp">
 
         <TextView
-            android:text="Anzahl"
+            android:text="@string/stuff_change_quantity_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView6" />
@@ -22,10 +22,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:text="2"
             android:ems="10"
-            android:id="@+id/editStuffQuantity" />
+            android:id="@+id/editStuffQuantity"
+            android:inputType="numberSigned" />
 
     </LinearLayout>
 </FrameLayout>

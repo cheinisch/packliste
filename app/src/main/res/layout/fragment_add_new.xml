@@ -21,7 +21,7 @@
         android:padding="@dimen/padding">
 
         <TextView
-            android:text="Ort"
+            android:text="@string/add_travel_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
@@ -35,14 +35,14 @@
             android:id="@+id/editTextCity" />
 
         <TextView
-            android:text="Reisezeit"
+            android:text="@string/add_travel_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView3"
             android:textAppearance="@android:style/TextAppearance.Material.Title" />
 
         <TextView
-            android:text="Anreise (T.M.J)"
+            android:text="@string/add_travel_anreise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView4" />
@@ -55,7 +55,7 @@
             android:id="@+id/editTextStart" />
 
         <TextView
-            android:text="Rückkehr (T.M.J)"
+            android:text="@string/add_travel_abreise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView5" />
@@ -68,7 +68,7 @@
             android:id="@+id/editTextEnde" />
 
         <Button
-            android:text="Button"
+            android:text="@string/add_travel_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/addCityButton" />

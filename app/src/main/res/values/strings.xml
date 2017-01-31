@@ -3,23 +3,49 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_about">Über diese APP</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_add_new">Neues Reiseziel</string>
     <string name="title_activity_city">Alle Reiseziele</string>
 
-    <!-- Alert Dialog -->
-    <string name="cab_change">Eintrag ändern</string>
-    <string name="cab_checked_string">ausgewählt</string>
+    <!-- StuffFragment -->
+    <string name="stuff_fragment_weather"></string>
+    <string name="stuff_fragment_dont_forget">Nicht vergessen</string>
+    <string name="stuff_fragment_have_to_buy">Muss noch gekauft werden</string>
+    <string name="stuff_fragment_quantity">Anzahl</string>
+    <string name="stuff_fragment_name">Name</string>
 
-    <string name="dialog_title">Listeneintrag ändern</string>
-    <string name="dialog_title_quantity">Anzahl:</string>
-    <string name="dialog_title_product">Produkt:</string>
-    <string name="dialog_button_positive">Ändern</string>
-    <string name="dialog_button_negative">Abbrechen</string>
+    <!-- Stuff Name ändern Dialog -->
+    <string name="stuff_change_text_title">Bezeichnung ändern</string>
+    <string name="stuff_change_text_name">Bezeichnung</string>
+
+    <!-- Stuff Name ändern Dialog -->
+    <string name="stuff_change_quantity_title">Anzahl ändern</string>
+    <string name="stuff_change_quantity_name">Anzahl</string>
+
+    <!-- Stuff Name ändern Dialog -->
+    <string name="stuff_delete_title">Löschen</string>
+    <string name="stuff_delete_text">Möchtest du das wirklich löschen?</string>
+
+    <!-- Reise hinzufügen -->
+    <string name="add_travel_button">Reise hinzufügen</string>
+    <string name="add_travel_city">Ort</string>
+    <string name="add_travel_date">Reisezeit</string>
+    <string name="add_travel_anreise">Anreise (T.M.J)</string>
+    <string name="add_travel_abreise">Abreise (T.M.J)</string>
+
+    <!-- Reise bearbeiten -->
+    <string name="edit_travel_title">Reise bearbeiten/löschen</string>
+    <string name="edit_travel_city">Ort</string>
+    <string name="edit_travel_anreise">Anreise</string>
+    <string name="edit_travel_abreise">Abreise</string>
+    <string name="edit_travel_delete">Löschen</string>
+    <string name="edit_travel_delete_text">Die Reise soll gelöscht werden</string>
+
+    <!-- Über diese APP -->
+    <string name="about_tab1">Informationen</string>
+    <string name="about_tab2">Quellen</string>
+    <string name="about_tab3">Releasenotes</string>
+
+
 </resources>

@@ -14,7 +14,7 @@
         android:padding="20dp">
 
         <TextView
-            android:text="Möchtest du das wirklich löschen?"
+            android:text="@string/stuff_delete_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView8" />

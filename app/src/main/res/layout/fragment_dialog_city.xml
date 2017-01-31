@@ -14,7 +14,7 @@
         android:padding="20dp">
 
         <TextView
-            android:text="Bearbeiten"
+            android:text="@string/edit_travel_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView6" />
@@ -28,7 +28,7 @@
             android:id="@+id/editTextTravelEdit" />
 
         <TextView
-            android:text="Anreise"
+            android:text="@string/edit_travel_anreise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView13" />
@@ -41,7 +41,7 @@
             android:id="@+id/editTextTravelDateedit" />
 
         <TextView
-            android:text="Abreise"
+            android:text="@string/edit_travel_abreise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView14" />
@@ -54,13 +54,13 @@
             android:id="@+id/editTextTravelDate2edit" />
 
         <TextView
-            android:text="Löschen"
+            android:text="@string/edit_travel_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView15" />
 
         <CheckBox
-            android:text="Die Reise soll gelöscht werden"
+            android:text="@string/edit_travel_delete_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/checkDelete" />

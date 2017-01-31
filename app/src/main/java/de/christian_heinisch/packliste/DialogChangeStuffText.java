@@ -48,7 +48,7 @@ public class DialogChangeStuffText extends DialogFragment {
 
         return new AlertDialog.Builder(getActivity())
                 .setView(rootview)
-                .setTitle("Test ändern")
+                .setTitle(R.string.stuff_change_text_title)
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

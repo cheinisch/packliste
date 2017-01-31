@@ -48,7 +48,7 @@ public class DialogChangeStuffQuantity extends DialogFragment {
 
         return new AlertDialog.Builder(getActivity())
                 .setView(rootview)
-                .setTitle("Anzahl ändern")
+                .setTitle(R.string.stuff_change_quantity_title)
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
